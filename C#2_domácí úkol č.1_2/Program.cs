@@ -7,23 +7,14 @@
             // 2.
             //Napište program, který se zeptá na počet hvězdiček a potom je v cyklu zobrazí na konzoli.
 
-            Console.Write("Tento program vytvoří trojúhelník z hvězdiček. Zadej požadovaný počet hvězdiček (celé číslo větší než 0): ");
+            Console.WriteLine("Tento program vytvoří trojúhelník z hvězdiček.");
 
-            string inputPocetHvezdicek = Console.ReadLine();
-            bool prevedeniPocetHvezdicek = int.TryParse(inputPocetHvezdicek, out int pocetHvezdicek);
-
-            while (!prevedeniPocetHvezdicek || pocetHvezdicek <= 0)
-            {
-                Console.Write("Špatně zadaný vstup! Zkus zadat počet hvězdiček (celé číslo větší než 0) znovu: ");
-                inputPocetHvezdicek = Console.ReadLine();
-                prevedeniPocetHvezdicek = int.TryParse(inputPocetHvezdicek, out pocetHvezdicek);
-            }
-
+            int pocetHvezdicek = ZadejPocetHvezdicek();
             // jedno možné řešení výpisu hvězdiček
-            int cisloRadku;
+
             for (int i = 1; i <= pocetHvezdicek; i++)
             {
-                cisloRadku = i;
+                int cisloRadku = i;
                 for (int j = 1; j <= cisloRadku; j++)
                 {
                     Console.Write('*');
@@ -32,12 +23,33 @@
             }
 
             //vylepšené řešení výpisu hvězdiček dle látky z lekce 3
-            //string radekHvezdicka;
+
             //for (int i = 1; i <= pocetHvezdicek; i++)
             //{
-            //    radekHvezdicka = new string('*', i);
+            //    string radekHvezdicka = new string('*', i);
             //    Console.WriteLine(radekHvezdicka);
             //}
+        }
+
+        static int ZadejPocetHvezdicek() 
+        {
+            int pocetHvezdicek;
+            bool prevedeniPocetHvezdicek;
+
+            do
+            {
+                Console.Write("Zadej požadovaný počet hvězdiček (celé číslo větší než 0): ");
+                string inputPocetHvezdicek = Console.ReadLine();
+                prevedeniPocetHvezdicek = int.TryParse(inputPocetHvezdicek, out pocetHvezdicek);
+
+                if (!prevedeniPocetHvezdicek || pocetHvezdicek <= 0)
+                {
+                    Console.Write("Špatně zadaný vstup! ");
+                }
+
+            } while (!prevedeniPocetHvezdicek || pocetHvezdicek <= 0);
+
+            return pocetHvezdicek;
         }
     }
 }

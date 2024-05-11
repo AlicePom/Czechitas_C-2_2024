@@ -13,46 +13,58 @@
             //       To je správně!
 
             Console.WriteLine("Myslím si číslo od 1 do 100. Hádej, o jaké číslo jde.");
-            Console.Write("Jdeme na to! Zadej celé číslo: ");
+            Console.Write("Jdeme na to! ");
 
             // vygenerování náhodného čísla
             Random generatorNahodnychCisel = new Random();
             int nahodneCislo = generatorNahodnychCisel.Next(1, 101);
 
-            string cisloInput = Console.ReadLine();
-            bool prevodCisla = int.TryParse(cisloInput, out int zadaneCislo);
-
-            if (!prevodCisla || zadaneCislo < 1 || zadaneCislo > 100)
-            {
-                Console.Write("Špatně zadaný vstup! Zkus zadat hádané číslo znovu: ");
-                cisloInput = Console.ReadLine();
-                prevodCisla = int.TryParse(cisloInput, out zadaneCislo);
-            }
-
             // pokud (a dokud) hráč číslo neuhádl
-            while (zadaneCislo != nahodneCislo)
+            int zadaneCislo;
+
+            do
             {
+                zadaneCislo = ZadaniCisla();
+
                 if (zadaneCislo > nahodneCislo)
                 {
-                    Console.Write($"Tebou zadané číslo je větší, hádej znovu: ");
+                    Console.Write($"Tebou zadané číslo je větší, hádej znovu! ");
                 }
-                else
+                else if (zadaneCislo < nahodneCislo)
                 {
-                    Console.Write($"Tebou zadané číslo je menší, hádej znovu: ");
+                    Console.Write($"Tebou zadané číslo je menší, hádej znovu! ");
                 }
 
-                cisloInput = Console.ReadLine();
-                prevodCisla = int.TryParse(cisloInput, out zadaneCislo);
+            } while (zadaneCislo != nahodneCislo);
 
-                if (!prevodCisla || zadaneCislo < 1 || zadaneCislo > 100)
-                {
-                    Console.Write("Špatně zadaný vstup! Zkus zadat hádané číslo znovu: ");
-                    cisloInput = Console.ReadLine();
-                    prevodCisla = int.TryParse(cisloInput, out zadaneCislo);
-                }
-            }
             // pokud hráč číslo uhádl
             Console.WriteLine($"Gratuluji! Uhádl(a) jsi číslo {nahodneCislo}.");
+        }
+
+        static int ZadaniCisla()
+        {
+            bool prevodCisla;
+            int zadaneCislo;
+
+            do
+            {
+                Console.Write("Zadej číslo: ");
+                string cisloInput = Console.ReadLine();
+                prevodCisla = int.TryParse(cisloInput, out zadaneCislo);
+
+                if (!prevodCisla)
+                {
+                    Console.Write("Špatně zadaný vstup - nebylo zadáno celé číslo! ");
+                }
+                else if (zadaneCislo < 1 || zadaneCislo > 100)
+                {
+                    Console.Write("Špatně zadaný vstup - nebylo zadáno číslo od 1 do 100! ");
+                    prevodCisla = false;
+                }
+
+            } while (!prevodCisla);
+
+            return zadaneCislo;
         }
     }
 }
