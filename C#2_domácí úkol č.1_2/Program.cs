@@ -39,13 +39,7 @@
             do
             {
                 Console.Write("Zadej požadovaný počet hvězdiček (celé číslo větší než 0): ");
-                string inputPocetHvezdicek = Console.ReadLine();
-                prevedeniPocetHvezdicek = int.TryParse(inputPocetHvezdicek, out pocetHvezdicek);
-
-                if (!prevedeniPocetHvezdicek || pocetHvezdicek <= 0)
-                {
-                    Console.Write("Špatně zadaný vstup! ");
-                }
+                prevedeniPocetHvezdicek = int.TryParse(Console.ReadLine(), out pocetHvezdicek);
 
             } while (!prevedeniPocetHvezdicek || pocetHvezdicek <= 0);
 

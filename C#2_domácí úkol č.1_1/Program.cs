@@ -29,13 +29,7 @@
             do
             {
                 Console.Write($"Zadej {poradiCisla} číslo: ");
-                string input = Console.ReadLine();
-                parsedInput = double.TryParse(input, out cislo);
-
-                if (!parsedInput)
-                {
-                    Console.WriteLine("Špatně zadaný vstup! Zkus zadat číslo znovu.");
-                }
+                parsedInput = double.TryParse(Console.ReadLine(), out cislo);
 
             } while (!parsedInput);
 

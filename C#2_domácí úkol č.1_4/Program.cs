@@ -49,18 +49,7 @@
             do
             {
                 Console.Write("Zadej číslo: ");
-                string cisloInput = Console.ReadLine();
-                prevodCisla = int.TryParse(cisloInput, out zadaneCislo);
-
-                if (!prevodCisla)
-                {
-                    Console.Write("Špatně zadaný vstup - nebylo zadáno celé číslo! ");
-                }
-                else if (zadaneCislo < 1 || zadaneCislo > 100)
-                {
-                    Console.Write("Špatně zadaný vstup - nebylo zadáno číslo od 1 do 100! ");
-                    prevodCisla = false;
-                }
+                prevodCisla = int.TryParse(Console.ReadLine(), out zadaneCislo);
 
             } while (!prevodCisla);
 
