@@ -1,37 +1,46 @@
 ﻿namespace C_2_domácí_úkol_č._1_3
 {
-    internal class Program
+    public class Lucistnik
     {
-        public class Lucistnik
+        public int PocetSipu;
+
+        public Lucistnik(int pocetSipu)
         {
-            public int PocetSipu = 10;
+            PocetSipu = pocetSipu;
+        }
 
-            public int Vystrel()
+        public void Vystrel()
+        {
+            // pokud má lučištník ještě nějaké šípy
+            if (PocetSipu > 0)
             {
-                if (PocetSipu > 0)
-                {
-                    PocetSipu -= 1;
-                    Console.WriteLine($"Vždy se strefím přímo doprostřed! Zbývá mi {PocetSipu} šípů");
+                PocetSipu -= 1;
+                Console.WriteLine($"Vždy se strefím přímo doprostřed! Zbývá mi {PocetSipu} šípů");
+            }
 
-                }
-                else
-                {
-                    Console.WriteLine("Nemám šípy.");
-                    Environment.Exit(0);
-                }
-
-                return PocetSipu;
+            // pokud právě lučištníkovi šípy došly
+            if (PocetSipu == 0)
+            {
+                Console.WriteLine("Nemám šípy.");
             }
         }
+    }
+    internal class Program
+    {
         static void Main(string[] args)
         {
-            //int pocetSipu = 3;
-            Lucistnik lucistnik = new Lucistnik();
+            int pocetSipu = 10;
+            Lucistnik lucistnik = new Lucistnik(pocetSipu);
 
             while (lucistnik.PocetSipu >= 0)
             {
                 lucistnik.Vystrel();
-            }
-        }
+
+                if (lucistnik.PocetSipu == 0)
+                {
+                    break;
+                }
+            }  
+        } 
     }
 }
