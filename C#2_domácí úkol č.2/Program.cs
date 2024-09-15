@@ -117,7 +117,7 @@ it was the grayish white of old porridge.";
             int indexAnd;
             string novyText = text; // uložím celý test do nové proměnné, protože budu modifikovat jeho délku (nemusela bych, protože jde o poslední úlohu, ale pro pořádek to udělám)
 
-            while (novyText.Contains("and", StringComparison.OrdinalIgnoreCase))
+            while (novyText.Contains(textAnd, StringComparison.OrdinalIgnoreCase))
             {
                 pocetAnd += 1;
                 indexAnd = novyText.IndexOf(textAnd, StringComparison.OrdinalIgnoreCase);

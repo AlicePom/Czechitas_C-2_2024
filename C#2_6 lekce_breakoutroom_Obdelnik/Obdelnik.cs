@@ -6,31 +6,103 @@ using System.Threading.Tasks;
 
 namespace C_2_6_lekce_breakoutroom_Obdelnik
 {
-    internal class Obdelnik
+    /* Vyuzij tridu Obdelnik z prvniho BR.
+   Prepis fieldy Sirka a Vyska na properties.
+   Nastavte properties tak, aby je nebylo mozne zmenit po vytvoreni instance.  
+   Vytvorte property Obsah, ktera umozni ziskat obsah obdelniku.
+   Vytvorte property Obvod, ktera umozni ziskat obvod obdelniku.
+   Vytvorte funkci Zvetsi, ktera zvetsi obdelnik o sirku a vysku.
+   Zajistete, aby nebylo mozne vytvorit obdelnik o obsahu 0 (vypiste hlasku a nastavte hodnotu na 1).
+   Napiste program, ktery vytvori obdelnik, vypise jeho velikosti, obsah a obvod.
+*/
+    public class Obdelnik
     {
-        public int Sirka;
-        public int Vyska;
+        private int pomocnaSirka;
+        public int Sirka
+        {
+            get
+            {
+                return pomocnaSirka;
+            }
+            private set
+            {
+                if (value <= 0)
+                {
+                    pomocnaSirka = 1;
+                    Console.WriteLine("Rozměry objektu nesmějí být menší nebo rovny nule!");
+                }
+                else
+                {
+                    pomocnaSirka = value;
+                }
+            }
+        }
 
-        public Obdelnik(int sirka, int vyska)
+        private int pomocnaDelka;
+        public int Delka
+        {
+            get
+            {
+                return pomocnaDelka;
+            }
+            private set
+            {
+                if (value <= 0)
+                {
+                    pomocnaDelka = 1;
+                    Console.WriteLine("Rozměry objektu nesmějí být menší nebo rovny nule!");
+                }
+                else
+                {
+                    pomocnaDelka = value;
+                }
+            }
+        }
+
+        public int Obsah
+        {
+            get
+            {
+                return Sirka * Delka;
+            }
+        }
+        public int Obvod
+        {
+            get
+            {
+                return 2 * (Sirka + Delka);
+            }
+        }
+
+        public Obdelnik(int sirka, int delka)
         {
             Sirka = sirka;
-            Vyska = vyska;
+            Delka = delka;
         }
 
         public Obdelnik(int sirka) : this(sirka, sirka)
         {
+
+        }
+
+        public void Zvetsi(int a, int b)
+        {
+            Sirka += a;
+            Delka += b;
         }
 
         public void VypisInformace()
         {
-            if (Sirka == Vyska)
+            string objekt;
+            if (Sirka == Delka)
             {
-                Console.WriteLine($"Čtverec - délka strany: {Sirka} cm.");
+                objekt = "čtverec";
             }
             else
             {
-                Console.WriteLine($"Obdélník - výška: {Vyska} cm, šířka: {Sirka} cm.");
+                objekt = "obdélník";
             }
+            Console.WriteLine($"Objekt je {objekt} o rozměrech {Sirka}x{Delka} cm, jeho obvod je {Obvod} cm a obsah {Obsah} cm2.");
         }
     }
 }
